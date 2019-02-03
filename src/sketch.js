@@ -3,12 +3,12 @@ const config = {
   scale: 100,
   maxTorque: 800,
   simulationSpeed: 1,
-  populationSize: 20,
+  populationSize: 25,
   simulationPeriod: 20,
-  mutationRate: 0.05,
-  minBodyDelta: 1.4,
+  mutationRate: 0.10,
+  minBodyDelta: 1.5,
   minLegDelta: 0.3,
-  motorNoise: 0.05,
+  motorNoise: 0.15,
   canvas: {
     width: 800,
     height: 400,
@@ -27,8 +27,8 @@ const globals = {
 
 let floorImg, bgImg;
 function preload() {
-  floorImg = loadImage('../assets/ground.png');
-  bgImg = loadImage('../assets/bg.png');
+  floorImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/ground.png');
+  bgImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/bg.png');
 }
 
 const setUpEnvironment = () => {
