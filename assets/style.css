@@ -1,6 +1,6 @@
 * {
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;
+  font-family: monospace, sans-serif;
 }
 
 table,
@@ -11,11 +11,16 @@ th {
 
 table {
   border-collapse: collapse;
-  width: 50%;
+  width: 75%;
 }
 
 .row {
   flex: 1;
+}
+
+body {
+  background-color: #333333;  
+  color: #777777;
 }
 
 #wrapper {
@@ -24,16 +29,29 @@ table {
 }
 
 #mainCanvas {
-  flex: 0 0 60%;
+  flex: 0 0 70%;
 }
 
-#humanstats {
+#stats {
+  flex: 1;
+  /*margin-top: 0%;*/
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+#simulationConfigs {
+  line-height: 0.5;
+}
+#bestHumanConfigs {
+  line-height: 0.5;
+}
+/*#humanstats {
   flex: 1;
   margin-top: 10px;
   margin-right: 400px;
   margin-left: 100px;
 }
-
+*/
 #controllers {
   flex: 1;
   font-family: monospace;
@@ -42,6 +60,7 @@ table {
 
 #chart {
   margin-bottom: 5px;
+
 }
 
 div.row button {
@@ -55,15 +74,16 @@ div.row button {
 }
 
 div.row .button1 {
-  background-color: rgb(81, 180, 81);
-  margin: 0px 260px;
+  background-color: #2ecc71;
+  /*margin: 0px 260px;*/
 }
 
 div.row .button2 {
-  background-color: rgb(93, 142, 206);
-  margin: 0px -140px;
+  background-color: #3498db;
+  /*margin: 0px -140px;*/
 }
 
 div.row textarea {
   margin: -5px 12.5px;
+  background-color: #333333;  
 }

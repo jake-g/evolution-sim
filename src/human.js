@@ -361,20 +361,20 @@ class Human {
 
   display() {
 
-    fill('#FA2F2E');
+    fill('#8e44ad');
     drawRect(this.leftFoot);
     drawRect(this.upperLeftLeg);
     drawRect(this.lowerLeftLeg);
     drawRect(this.upperLeftArm);
     drawRect(this.lowerLeftArm);
 
-    fill('blue')
+    fill('#3498db')
     drawRect(this.neck);
     drawRect(this.torso);
     drawRect(this.head);
     drawRect(this.hip);
 
-    fill('yellow');
+    fill('#9b59b6');
     drawRect(this.lowerRightLeg);
     drawRect(this.upperRightLeg);
     drawRect(this.rightFoot);

@@ -25,11 +25,11 @@ const globals = {
   bestHuman: { score: 0, stepsMade: 0 },
 }
 
-let floorImg, bgImg;
-function preload() {
-  floorImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/ground.png');
-  bgImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/bg.png');
-}
+// let floorImg, bgImg;
+// function preload() {
+//   floorImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/ground.png');
+//   bgImg = loadImage('https://raw.githubusercontent.com/adityathebe/evolutionSimulator/master/assets/bg.png');
+// }
 
 const setUpEnvironment = () => {
 
@@ -62,7 +62,7 @@ function draw() {
   background(51);
   scale(config.scale);
   noStroke();
-  image(bgImg, 4, 1.68, bgImg.width / config.scale, bgImg.height / config.scale);
+  // image(bgImg, 4, 1.68, bgImg.width / config.scale, bgImg.height / config.scale);
 
   // Display Humans
   for (const human of globals.humans) {
@@ -71,8 +71,8 @@ function draw() {
     }
   }
 
-  // drawRect(globals.floor);
-  image(floorImg, 4, 4 + 0.1, floorImg.width / config.scale, floorImg.height / config.scale);
+  drawRect(globals.floor);
+  // image(floorImg, 4, 4 + 0.1, floorImg.width / config.scale, floorImg.height / config.scale);
 }
 
 function drawRect(body) {

@@ -28,9 +28,13 @@ class UIController {
       row.insertCell(-1).innerHTML = ++index;
       row.insertCell(-1).innerHTML = human.score.toFixed(2);
       row.insertCell(-1).innerHTML = human.stepsMade;
-
-      if (human.isAlive === false) {
-        row.style.backgroundColor = "#FF2748";
+      if (human.stepsMade > 1) {
+        row.style.backgroundColor = "lightgray";
+      }
+      if (human.isAlive === true) {
+        row.style.color = "#2ecc71";
+      } else {
+        row.style.color = "#e74c3c";
       }
     }
   }
@@ -68,8 +72,8 @@ class UIController {
           label: 'High Score',
           data: highScoreData,
           fill: false,
-          borderColor: 'red',
-          backgroundColor: 'red',
+          borderColor: '#9b59b6',
+          backgroundColor: '#9b59b6',
           borderDash: [3, 1],
           pointRadius: 1,
           pointHoverRadius: 3,
@@ -78,8 +82,8 @@ class UIController {
           label: 'Average Score',
           data: avgScoreData,
           fill: true,
-          borderColor: '#2193EE',
-          backgroundColor: '#2193EE',
+          borderColor: '#3498db',
+          backgroundColor: '#3498db',
           pointRadius: 0,
           pointHoverRadius: 0,
         }],
