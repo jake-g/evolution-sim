@@ -77,6 +77,7 @@ class GeneticAlgorithm {
     // Store Best Human
     if (genHighScore > globals.bestHuman.score) {
       globals.bestHuman = genBestHuman;
+      console.log('New Top Score: ', int(genBestHuman.score), genBestHuman);
     }
 
     // Evaluate Fitness

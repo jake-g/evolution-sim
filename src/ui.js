@@ -29,7 +29,7 @@ class UIController {
       row.insertCell(-1).innerHTML = human.score.toFixed(2);
       row.insertCell(-1).innerHTML = human.stepsMade;
       if (human.stepsMade > 1) {
-        row.style.backgroundColor = "lightgray";
+        row.style.backgroundColor = "darkgray";
       }
       if (human.isAlive === true) {
         row.style.color = "#2ecc71";

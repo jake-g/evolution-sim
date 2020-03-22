@@ -11,7 +11,7 @@ th {
 
 table {
   border-collapse: collapse;
-  width: 75%;
+  width: 98%;
 }
 
 .row {
@@ -35,8 +35,8 @@ body {
 #stats {
   flex: 1;
   /*margin-top: 0%;*/
-  margin-right: 3%;
-  margin-left: 3%;
+  margin-right: 1%;
+  margin-left: 1%;
 }
 
 #simulationConfigs {
