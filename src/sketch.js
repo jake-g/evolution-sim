@@ -13,7 +13,7 @@ const config = {
     width: 800,
     height: 400,
   },
-}
+};
 
 const globals = {
   world: null,
@@ -23,7 +23,7 @@ const globals = {
   generationHighScores: [],
   generationAvgScores: [],
   bestHuman: { score: 0, stepsMade: 0 },
-}
+};
 
 // let floorImg, bgImg;
 // function preload() {
@@ -32,7 +32,6 @@ const globals = {
 // }
 
 const setUpEnvironment = () => {
-
   // Create World
   const gravity = new b2.Vec2(0, 10);
   globals.world = new b2.World(gravity, true);
@@ -42,7 +41,7 @@ const setUpEnvironment = () => {
 
   // Create Humans
   GeneticAlgorithm.initializePopulation();
-}
+};
 
 function setup() {
   const canvas = createCanvas(config.canvas.width, config.canvas.height);
@@ -87,11 +86,15 @@ function drawRect(body) {
 }
 
 const rangeInput = document.getElementById('simulationSlider');
-rangeInput.addEventListener("input", function (event) {
-  config.simulationSpeed = rangeInput.value;
-  clearInterval(globals.simulationInterval);
-  clearInterval(globals.evolutionInterval);
-  if (config.simulationSpeed > 0) {
-    GeneticAlgorithm.runAllSimulationIntervals();
-  }
-}, false);
+rangeInput.addEventListener(
+  'input',
+  function(event) {
+    config.simulationSpeed = rangeInput.value;
+    clearInterval(globals.simulationInterval);
+    clearInterval(globals.evolutionInterval);
+    if (config.simulationSpeed > 0) {
+      GeneticAlgorithm.runAllSimulationIntervals();
+    }
+  },
+  false
+);
