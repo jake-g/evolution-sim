@@ -8,6 +8,7 @@ class GeneticAlgorithm {
   static initializePopulation() {
     globals.generationIndex = 1;
     globals.aliveHumans = 0;
+    globals.finishedHumans == 0;
     UIController.displayGenerationIndex();
     UIController.displayBestHumanStats();
     for (let i = 0; i < config.populationSize; i += 1) {
@@ -29,10 +30,20 @@ class GeneticAlgorithm {
     }
 
     for (const human of globals.humans) {
-      if (human.isAlive && human.torso.GetPosition().y >= 3.5) {
+      // console.log("Head Y position: " + human.head.GetPosition().y);
+      if (!human.isFinisher && human.checkIfFinisher()) {
+        human.isFinisher = true;
+        globals.finishedHumans += 1;
+        human.assignScore();
+        globals.aliveHumans -= 1;
+
+
+      }
+      if (human.isAlive && human.checkStillAlive()) {
         human.isAlive = false;
         globals.aliveHumans -= 1;
       }
+
 
       if (human.isAlive) {
         human.walk(config.motorNoise);
@@ -58,13 +69,19 @@ class GeneticAlgorithm {
 
   static assignFitness(totalScore) {
     for (const human of globals.humans) {
-      human.fitness = human.score / totalScore;
+      if (human.score > 0 && totalScore > 0) {
+        human.fitness = human.score / totalScore;
+      } else {
+        human.fitness = 0.1;
+      }
     }
   }
 
   static createNextGeneration() {
     // Store Generation High score
-    const totalScore = globals.humans.reduce((acc, cur) => ({ score: acc.score + cur.score })).score;
+    const totalScore = globals.humans.reduce((acc, cur) => ({
+      score: acc.score + cur.score
+    })).score;
     const genBestHuman = globals.humans.reduce((a, b) => (a.score > b.score ? a : b));
     const genHighScore = genBestHuman.score;
     const genAvgScore = totalScore / config.populationSize;
@@ -76,6 +93,7 @@ class GeneticAlgorithm {
     if (genHighScore > globals.bestHuman.score) {
       globals.bestHuman = genBestHuman;
       console.log('New Top Score: ', int(genBestHuman.score), genBestHuman);
+      document.getElementById('userGenomeInput').value = JSON.stringify(globals.bestHuman.genome, null, 2);
     }
 
     // Evaluate Fitness
@@ -96,7 +114,7 @@ class GeneticAlgorithm {
       const child = GeneticAlgorithm.crossover(parentA, parentB);
 
       // Mutation
-      GeneticAlgorithm.mutate(child);
+      GeneticAlgorithm.mutate(child, config.mutationRate);
       newGeneration.push(child);
     }
 
@@ -108,6 +126,7 @@ class GeneticAlgorithm {
     globals.generationIndex += 1;
     globals.stepCounter = 0;
     globals.aliveHumans = newGeneration.length;
+    globals.finishedHumans = 0;
     UIController.displayGenerationIndex();
     UIController.displayBestHumanStats();
   }
@@ -135,15 +154,26 @@ class GeneticAlgorithm {
     return one;
   }
 
-  static mutate(human) {
+  static mutate(human, probability) {
+
     for (const gene of human.genome) {
       const randomNum = Math.random();
-      if (randomNum < config.mutationRate) {
-        gene.timeFactor = gene.timeFactor + gene.timeFactor * Math.random();
-        gene.cosFactor = gene.cosFactor + gene.cosFactor * Math.random();
-        gene.timeShift = gene.timeShift + gene.timeShift * Math.random();
+      if (randomNum < probability) {
+        gene.amplitude =  (gene.amplitude + config.maxAmplitude * (2*Math.random() - 1))/2;
+        gene.frequency = (gene.frequency + config.maxFrequency * Math.random())/2;
+        gene.phase = (gene.phase+Math.random() * Math.PI * 2)/2;
+        // gene.frequency = gene.frequency + gene.frequency * (2 * Math.random() - 1);
+        // gene.amplitude = gene.amplitude + gene.amplitude * (2 * Math.random() - 1);
+        // gene.phase = gene.phase + Math.PI / 2 * (2 * Math.random() - 1);
+        // gene.frequency = Math.random() * 2 * gene.frequency;
+        // gene.amplitude = Math.random() * 2 * gene.amplitude;
+        // gene.phase = Math.random() * 2 * gene.phase;
+        // gene.frequency = Math.random() * 2 * gene.frequency;
+        // gene.amplitude = gene.amplitude + config.maxAmplitude * Math.random() - config.maxAmplitude / 2;
+        // gene.phase = Math.random() * 2 * gene.phase;
       }
     }
+
   }
 
   static crossover(parentA, parentB) {
@@ -153,9 +183,9 @@ class GeneticAlgorithm {
     for (let i = 0; i < totalJoints; i += 1) {
       const parent = i < dividingIndex ? parentA : parentB;
       const newGene = {
-        cosFactor: parent.genome[i].cosFactor,
-        timeShift: parent.genome[i].timeShift,
-        timeFactor: parent.genome[i].timeFactor,
+        amplitude: Math.max(Math.min(parent.genome[i].amplitude, config.maxAmplitude), -1 * config.maxAmplitude),
+        phase: parent.genome[i].phase % 2 * Math.PI,
+        frequency: Math.max(Math.min(parent.genome[i].frequency, config.maxFrequency), config.minFrequency)
       };
       newGenome.push(newGene);
     }

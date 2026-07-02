@@ -18,9 +18,13 @@ table {
   flex: 1;
 }
 
+#rangevalue {
+  padding: 10px;
+}
+
 body {
-  background-color: #333333;  
-  color: #777777;
+  background-color: #333333;
+  color: #a1a1a1;
 }
 
 #wrapper {
@@ -34,17 +38,18 @@ body {
 
 #stats {
   flex: 1;
-  /*margin-top: 0%;*/
-  margin-right: 1%;
-  margin-left: 1%;
+  width: 98%;
+
 }
 
 #simulationConfigs {
   line-height: 0.5;
 }
+
 #bestHumanConfigs {
   line-height: 0.5;
 }
+
 /*#humanstats {
   flex: 1;
   margin-top: 10px;
@@ -52,38 +57,55 @@ body {
   margin-left: 100px;
 }
 */
-#controllers {
-  flex: 1;
+#genomeRow {
+  /* flex: 1; */
   font-family: monospace;
-  padding-left: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #chart {
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 
 }
 
-div.row button {
-  padding: 2px;
+div.genome button {
+  /* padding: 2px; */
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
-  margin: 0px 15px;
+  /* margin: 0px 15px; */
   cursor: pointer;
 }
 
-div.row .button1 {
+.greenButton {
   background-color: #2ecc71;
-  /*margin: 0px 260px;*/
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-div.row .button2 {
+.blueButton {
   background-color: #3498db;
-  /*margin: 0px -140px;*/
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-div.row textarea {
-  margin: -5px 12.5px;
-  background-color: #333333;  
+.redButton {
+  background-color: #e74c3c;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.purpleButton {
+  background-color: #9b59b6;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+div.genome textarea {
+  background-color: #333333;
+  color: #a1a1a1;
+  width: 98%;
+
 }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simulator</title>
+  <title>evolution</title>
   <link rel="stylesheet" href="assets/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
@@ -15,26 +15,33 @@
     <div class='row'>
       <div id="mainCanvas"></div>
 
-
       <canvas id="chart"></canvas>
-      <div class='row' id="controllers">
-        <textarea id="userGenomeInput" placeholder="Genome" cols="50" rows="2"></textarea>
-        <br />
-        <br />
-        <button class="button1" onclick="UIController.downloadBestGenome()">Download</button>
-        <button class="button2" onclick="UIController.uploadCustomGenome()">Upload</button>
-      </div>
+
     </div> <!-- First Row -->
- 
+
     <div id="stats">
-      <span>
+      <div class='slider' id="sliderRow">
+        <button class="purpleButton" onclick="UIController.resetSpeed()">Init</button>
+        <button class="blueButton" id="pauseButton" onclick="UIController.freezeSimulation()">Freeze</button>
         <p style="display: inline;"><strong>Speed</p>
-        <input id="simulationSlider" style="display: inline;" type="range" value="1" min="0" max="5" step="1">
-      </span>
+        <input id="simulationSlider" style="display: inline;" type="range" value="0.1" min="0" max="10" step="0.05">
+        <output id="rangevalue">1</output>
+
+      </div>
       <div id="simulationConfigs"></div>
       <div id="bestHumanConfigs"></div>
       <table id="humanstats"></table>
+      <div class='genome' id="genomeRow">
+        <p style="display: inline;"><strong>Best Genome</p>
+        <textarea id="userGenomeInput" placeholder="Genome" cols="60" rows="15" , spellcheck="false"></textarea>
+        <button class="redButton" onclick="UIController.reloadPage()">Reset</button>
+        <button class="greenButton" onclick="UIController.downloadBestGenome()">Download</button>
+        <button class="blueButton" onclick="UIController.uploadCustomGenome()">Upload</button>
+        <button class="purpleButton" onclick="UIController.mutateBestGenome()">Mutate</button>
+
+      </div>
     </div>
+
     <!-- Second Row -->
 
   </div> <!-- Wrapper -->
@@ -48,7 +55,7 @@
   <script src="src/ga.js"></script>
   <script src="src/ui.js"></script>
   <script src="src/floor.js"></script>
-  <script src="src/human.js"></script>
+  <script src="src/wallaby.js"></script>
   <script src="src/sketch.js"></script>
 </body>
 
